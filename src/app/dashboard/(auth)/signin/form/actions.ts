@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { formSchema } from "./validation";
-import prisma from "../../../../../lib/prisma";
+import prisma from "../../../../../../lib/prisma";
 import bcrypt from "bcrypt";
 import { lucia } from "@/lib/auth";
 import { cookies } from "next/headers";
