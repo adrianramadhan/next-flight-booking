@@ -5,6 +5,8 @@ import React, { FC } from "react";
 import { ActionResult, handleSignIn } from "./form/actions";
 import { useFormState } from "react-dom";
 import FormSignIn from "./form";
+import { getUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 interface SignInPageProps {}
 
@@ -12,7 +14,13 @@ export const metadata: Metadata = {
   title: "Dashboard | Sign In",
 };
 
-const SignInPage: FC<SignInPageProps> = ({}) => {
+const SignInPage = async () => {
+  const { session, user } = await getUser();
+
+  if (session && user.role === "ADMIN") {
+    redirect("/dashboard");
+  }
+
   return <FormSignIn />;
 };
 
