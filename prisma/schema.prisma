@@ -39,7 +39,7 @@ model User {
   passport String?
   role     RoleUser
   tickets  Ticket[]
-  sessions Session[]
+  sessions Session[]  
 }
 
 model Session {
