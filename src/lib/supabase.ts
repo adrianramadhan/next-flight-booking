@@ -38,3 +38,21 @@ export const getUrlFile = (filename: string) => {
 
   return data.publicUrl;
 };
+
+export const deleteFile = async (filename: string) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from("ImageUpload")
+      .remove([`public/airplanes/${filename}`]);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return data;
+  } catch (error) {
+    console.log(error);
+
+    return error;
+  }
+};

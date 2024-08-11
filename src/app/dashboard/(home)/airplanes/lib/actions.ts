@@ -3,7 +3,7 @@
 import { ActionResult } from "@/app/dashboard/(auth)/signin/form/actions";
 import { airplaneFormSchema } from "./validation";
 import { redirect } from "next/navigation";
-import { uploadFile } from "@/lib/supabase";
+import { deleteFile, uploadFile } from "@/lib/supabase";
 import prisma from "../../../../../../lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -145,4 +145,45 @@ export async function updateAirplane(
 
   revalidatePath("/dashboard/airplanes");
   redirect("/dashboard/airplanes");
+}
+
+export async function deleteAirplane(
+  id: string
+): Promise<ActionResult | undefined> {
+  const data = await prisma.airplane.findFirst({
+    where: {
+      id: id,
+    },
+  });
+
+  if (!data) {
+    return {
+      errorTitle: "Data not found",
+      errorDesc: ["Data tidak ditemukan"],
+    };
+  }
+
+  const deletedFile = await deleteFile(data?.image);
+
+  if (deletedFile instanceof Error) {
+    return {
+      errorTitle: "Error Delete",
+      errorDesc: ["Terjadi kesalahan saat menghapus file"],
+    };
+  }
+
+  try {
+    const data = await prisma.airplane.delete({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    return {
+      errorTitle: "Failed to delete data",
+      errorDesc: ["Terjadi kesalahan saat menghapus data"],
+    };
+  }
+
+  revalidatePath("/dashboard/airplanes");
 }
