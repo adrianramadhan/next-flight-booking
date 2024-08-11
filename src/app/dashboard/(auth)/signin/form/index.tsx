@@ -10,7 +10,7 @@ interface FormSignInProps {}
 
 const initialFormState: ActionResult = {
   errorTitle: null,
-  erroDesc: [],
+  errorDesc: [],
 };
 
 const SubmitButton = () => {
@@ -41,7 +41,7 @@ const FormSignIn: FC<FormSignInProps> = ({}) => {
           <div className="mx-auto my-7 bg-red-500 w-[400px] p-4 rounded-lg text-white">
             <div className="font-bold mb-4">Error</div>
             <ul className="list-disc list-inside">
-              {state.erroDesc?.map((value, index) => (
+              {state.errorDesc?.map((value, index) => (
                 <li key={index}>{value}</li>
               ))}
             </ul>

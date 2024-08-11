@@ -9,7 +9,7 @@ import { cookies } from "next/headers";
 
 export interface ActionResult {
   errorTitle: string | null;
-  erroDesc: string[] | null;
+  errorDesc: string[] | null;
 }
 
 export async function handleSignIn(
@@ -26,7 +26,7 @@ export async function handleSignIn(
 
     return {
       errorTitle: "Error Validation",
-      erroDesc: errorDesc,
+      errorDesc,
     };
   }
 
@@ -39,7 +39,7 @@ export async function handleSignIn(
   if (!existingUser) {
     return {
       errorTitle: "Error",
-      erroDesc: ["User not found"],
+      errorDesc: ["User not found"],
     };
   }
 
@@ -51,7 +51,7 @@ export async function handleSignIn(
   if (!validPassword) {
     return {
       errorTitle: "Error",
-      erroDesc: ["Invalid password"],
+      errorDesc: ["Invalid password"],
     };
   }
 

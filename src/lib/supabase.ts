@@ -13,7 +13,7 @@ export const uploadFile = async (file: File) => {
     const filename = `${Date.now()}.png`;
 
     const { error } = await supabase.storage
-      .from("avatars")
+      .from("ImageUpload")
       .upload(`public/airplanes/${filename}`, file, {
         cacheControl: "3600",
         upsert: false,
@@ -22,6 +22,8 @@ export const uploadFile = async (file: File) => {
     if (error) {
       throw new Error(error.message);
     }
+
+    return filename;
   } catch (error) {
     console.log(error);
 
