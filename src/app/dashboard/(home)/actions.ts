@@ -11,7 +11,7 @@ export async function logout(): Promise<ActionResult> {
   if (!session) {
     return {
       errorTitle: "Error",
-      erroDesc: ["Unauthorized"],
+      errorDesc: ["Unauthorized"],
     };
   }
 
