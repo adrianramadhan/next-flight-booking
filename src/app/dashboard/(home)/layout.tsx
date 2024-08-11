@@ -4,6 +4,7 @@ import "../../globals.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { BookOpenText, LogOut, Plane, Ticket, User } from "lucide-react";
+import ButtonLogout from "./component/button-logout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -83,15 +84,7 @@ export default function DashboardLayout({
                 </Button>
               </div>
 
-              <div className="space-y-2">
-                <Button
-                  variant={"destructive"}
-                  className="w-full justify-start"
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Logout
-                </Button>
-              </div>
+              <ButtonLogout />
             </section>
             {/* END Sidebar */}
 
