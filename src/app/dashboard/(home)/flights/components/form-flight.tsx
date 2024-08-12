@@ -12,13 +12,16 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import SubmitButtonForm from "../../component/submit-form-button";
-import type { Airplane } from "@prisma/client";
+import type { Airplane, Flight } from "@prisma/client";
 import type { ActionResult } from "@/app/dashboard/(auth)/signin/form/actions";
 import { useFormState } from "react-dom";
-import { saveFlight } from "../lib/actions";
+import { saveFlight, updateFlight } from "../lib/actions";
+import { dateFormat } from "@/lib/utils";
 
 interface FormFlightProps {
   airplanes: Airplane[];
+  type?: "ADD" | "EDIT";
+  defaultValues?: Flight | null;
 }
 
 const initialFormState: ActionResult = {
@@ -26,8 +29,18 @@ const initialFormState: ActionResult = {
   errorDesc: [],
 };
 
-export default function FormFlight({ airplanes }: FormFlightProps) {
-  const [state, formAction] = useFormState(saveFlight, initialFormState);
+export default function FormFlight({
+  airplanes,
+  defaultValues,
+  type,
+}: FormFlightProps) {
+  const updateFlightWithId = (_state: ActionResult, formData: FormData) =>
+    updateFlight(null, defaultValues?.id, formData);
+
+  const [state, formAction] = useFormState(
+    type === "ADD" ? saveFlight : updateFlightWithId,
+    initialFormState
+  );
 
   return (
     <form action={formAction} className="ml-2 space-y-6">
@@ -45,7 +58,7 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="planeId">Pilih Pesawat</Label>
-          <Select name="planeId">
+          <Select name="planeId" defaultValue={defaultValues?.planeId}>
             <SelectTrigger id="planeId">
               <SelectValue placeholder="Pilih Pesawat" />
             </SelectTrigger>
@@ -66,6 +79,7 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             id="price"
             type="number"
             min={0}
+            defaultValue={defaultValues?.price}
             required
           />
           <span className="text-xs text-gray-900">
@@ -82,6 +96,7 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             placeholder="Kota Keberangkatan..."
             name="departureCity"
             id="departureCity"
+            defaultValue={defaultValues?.departureCity}
             required
           />
         </div>
@@ -93,6 +108,10 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             name="departureDate"
             id="departureDate"
             className="block"
+            defaultValue={dateFormat(
+              defaultValues?.departureDate,
+              "YYYY-MM-DDTHH:MM"
+            )}
             required
           />
         </div>
@@ -102,6 +121,7 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             placeholder="Kode Kota..."
             name="departureCityCode"
             id="departureCityCode"
+            defaultValue={defaultValues?.departureCityCode}
             required
           />
         </div>
@@ -114,6 +134,7 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             placeholder="Kota Tujuan..."
             name="destinationCity"
             id="destinationCity"
+            defaultValue={defaultValues?.destinationCity}
             required
           />
         </div>
@@ -125,6 +146,10 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             name="arrivalDate"
             id="arrivalDate"
             className="block"
+            defaultValue={dateFormat(
+              defaultValues?.arrivalDate,
+              "YYYY-MM-DDTHH:MM"
+            )}
             required
           />
         </div>
@@ -134,6 +159,7 @@ export default function FormFlight({ airplanes }: FormFlightProps) {
             placeholder="Kode Kota..."
             name="destinationCityCode"
             id="destinationCityCode"
+            defaultValue={defaultValues?.destinationCityCode}
             required
           />
         </div>
