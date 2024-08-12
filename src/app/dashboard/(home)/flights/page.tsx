@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import React, { FC } from "react";
 import { columns } from "./components/columns-flight";
+import { getFlights } from "./lib/data";
 
 interface FlightPageProps {}
 
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
   description: "Flights page",
 };
 
-const FlightPage: FC<FlightPageProps> = ({}) => {
+const FlightPage: FC<FlightPageProps> = async ({}) => {
+  const data = await getFlights();
+
   return (
     <>
       <div className="flex flex-row items-center justify-between">
@@ -25,7 +28,7 @@ const FlightPage: FC<FlightPageProps> = ({}) => {
           </Link>
         </Button>
       </div>
-      <DataTable columns={columns} data={[]} />
+      <DataTable columns={columns} data={data} />
     </>
   );
 };
