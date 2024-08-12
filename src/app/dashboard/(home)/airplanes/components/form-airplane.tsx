@@ -8,6 +8,8 @@ import React, { type FC } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import { saveAirplane, updateAirplane } from "../lib/actions";
 import type { Airplane } from "@prisma/client";
+import Image from "next/image";
+import { getUrlFile } from "@/lib/supabase";
 
 interface FormAirplaneProps {
   type?: "ADD" | "EDIT";
@@ -41,7 +43,7 @@ const FormAirplane: FC<FormAirplaneProps> = ({ type, defaultValues }) => {
   );
 
   return (
-    <form action={formAction} className="w-[40%] space-y-4 ml-2">
+    <form action={formAction} className="w-[40%] space-y-4 ml-2 ">
       {state.errorTitle !== null && (
         <div className=" my-7 bg-red-500 w-full p-4 rounded-lg text-white">
           <div className="font-bold mb-4">Error</div>
@@ -75,13 +77,19 @@ const FormAirplane: FC<FormAirplaneProps> = ({ type, defaultValues }) => {
       </div>
       <div className="space-y-2">
         <Label htmlFor="image">Upload Foto</Label>
+        {defaultValues?.image && (
+          <Image
+            src={getUrlFile(defaultValues?.image)}
+            alt="Existing Image"
+            width={180}
+            height={180}
+          />
+        )}
         <Input
           type="file"
           placeholder="Upload Foto..."
           name="image"
           id="image"
-          defaultValue={defaultValues?.image}
-          required
         />
       </div>
 
