@@ -20,9 +20,11 @@ export const columns: ColumnDef<Airplane>[] = [
         <Image
           src={getUrlFile(plane.image)}
           alt="Image Airplane"
-          width={180}
-          height={180}
+          width={120}
+          height={120}
           className="rounded-lg object-cover"
+          style={{ width: "auto", height: "auto" }}
+          priority
         />
       );
     },

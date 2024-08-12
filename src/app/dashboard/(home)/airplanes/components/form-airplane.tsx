@@ -73,6 +73,8 @@ const FormAirplane: FC<FormAirplaneProps> = ({ type, defaultValues }) => {
             alt="Existing Image"
             width={180}
             height={180}
+            style={{ width: "auto", height: "auto" }}
+            priority
           />
         )}
         <Input

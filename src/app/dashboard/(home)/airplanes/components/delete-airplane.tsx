@@ -10,7 +10,7 @@ interface DeleteAirplaneProps {
   id: string;
 }
 
-async function DeleteButton() {
+function DeleteButton() {
   const { pending } = useFormStatus();
 
   return (
@@ -25,7 +25,7 @@ const DeleteAirplane: FC<DeleteAirplaneProps> = ({ id }) => {
   const deleteAirplaneWithId = deleteAirplane.bind(null, id);
 
   return (
-    <form action={deleteAirplaneWithId} method="POST">
+    <form action={deleteAirplaneWithId}>
       <DeleteButton />
     </form>
   );

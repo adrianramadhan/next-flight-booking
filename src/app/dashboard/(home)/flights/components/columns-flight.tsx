@@ -30,6 +30,8 @@ export const columns: ColumnDef<FlightColumn>[] = [
             className=" object-cover rounded-xl"
             width={120}
             height={120}
+            style={{ width: "auto", height: "auto" }}
+            priority
           />
           <div>
             <div className="font-semibold">{flight.plane.name}</div>
