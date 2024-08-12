@@ -9,7 +9,7 @@ import { saveAirplane, updateAirplane } from "../lib/actions";
 import type { Airplane } from "@prisma/client";
 import Image from "next/image";
 import { getUrlFile } from "@/lib/supabase";
-import SubmitButtonForm from "../../component/submit-form-button";
+import SubmitButtonForm from "../../components/submit-form-button";
 
 interface FormAirplaneProps {
   type?: "ADD" | "EDIT";

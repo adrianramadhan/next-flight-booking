@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import SubmitButtonForm from "../../component/submit-form-button";
+import SubmitButtonForm from "../../components/submit-form-button";
 import type { Airplane, Flight } from "@prisma/client";
 import type { ActionResult } from "@/app/dashboard/(auth)/signin/form/actions";
 import { useFormState } from "react-dom";

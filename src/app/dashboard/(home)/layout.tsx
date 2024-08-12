@@ -4,7 +4,7 @@ import "../../globals.css";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { BookOpenText, LogOut, Plane, Ticket, User } from "lucide-react";
-import ButtonLogout from "./component/button-logout";
+import ButtonLogout from "./components/button-logout";
 import { getUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
