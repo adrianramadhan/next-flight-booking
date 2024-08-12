@@ -1,10 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { getUrlFile } from "@/lib/supabase";
 import { Airplane, Flight, FlightSeat } from "@prisma/client";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Pencil } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import ColumnRouteFlight from "./column-route-flight";
+import ColumnSeatPrice from "./column-seatprice";
 
 export type FlightColumn = Flight & {
   plane: Airplane;
@@ -18,7 +22,21 @@ export const columns: ColumnDef<FlightColumn>[] = [
     cell: ({ row }) => {
       const flight = row.original;
 
-      return "Pesawat";
+      return (
+        <div className="flex items-center gap-2">
+          <Image
+            src={getUrlFile(flight.plane?.image)}
+            alt={flight.plane.name}
+            className=" object-cover rounded-xl"
+            width={120}
+            height={120}
+          />
+          <div>
+            <div className="font-semibold">{flight.plane.name}</div>
+            <div>{flight.plane.code}</div>
+          </div>
+        </div>
+      );
     },
   },
   {
@@ -27,16 +45,16 @@ export const columns: ColumnDef<FlightColumn>[] = [
     cell: ({ row }) => {
       const flight = row.original;
 
-      return "Pesawat";
+      return <ColumnRouteFlight flight={flight} />;
     },
   },
   {
     accessorKey: "price",
-    header: "Price",
+    header: "Harga / Kursi",
     cell: ({ row }) => {
       const flight = row.original;
 
-      return "Price";
+      return <ColumnSeatPrice flight={flight} />;
     },
   },
   {

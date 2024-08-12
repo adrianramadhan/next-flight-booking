@@ -1,6 +1,7 @@
-import { TypeSet } from "@prisma/client";
+import { FlightSeat, TypeSet } from "@prisma/client";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import dayjs from "dayjs";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -25,4 +26,54 @@ export const generateSeatPerClass = (flightId: string) => {
   }
 
   return seats;
+};
+
+export const dateFormat = (
+  date: Date | string,
+  format = "DD MMM YYYY HH:mm"
+) => {
+  if (!date) {
+    return "";
+  }
+
+  const dateformat = dayjs(date).format(format);
+
+  return dateformat;
+};
+
+export const rupiahFormat = (value: number) => {
+  return Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  }).format(value);
+};
+
+export const mappingSeats = (seats: FlightSeat[]) => {
+  const totalSeatEconomy = seats.filter(
+    (seat) => seat.type === "ECONOMY"
+  ).length;
+  const totalSeatBusiness = seats.filter(
+    (seat) => seat.type === "BUSINESS"
+  ).length;
+  const totalSeatFirst = seats.filter((seat) => seat.type === "FIRST").length;
+
+  const economy = seats.filter(
+    (item) => item.type === "ECONOMY" && item.isBooked
+  ).length;
+  const business = seats.filter(
+    (item) => item.type === "BUSINESS" && item.isBooked
+  ).length;
+  const first = seats.filter(
+    (item) => item.type === "FIRST" && item.isBooked
+  ).length;
+
+  return {
+    economy,
+    business,
+    first,
+
+    totalSeatEconomy,
+    totalSeatBusiness,
+    totalSeatFirst,
+  };
 };
