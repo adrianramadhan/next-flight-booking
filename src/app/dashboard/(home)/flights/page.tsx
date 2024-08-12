@@ -7,14 +7,14 @@ import React, { FC } from "react";
 import { columns } from "./components/columns-flight";
 import { getFlights } from "./lib/data";
 
-interface FlightPageProps {}
+// interface FlightPageProps {}
 
 export const metadata: Metadata = {
   title: "Dashboard | Flights",
   description: "Flights page",
 };
 
-const FlightPage: FC<FlightPageProps> = async ({}) => {
+const FlightPage: FC = async () => {
   const data = await getFlights();
 
   return (
