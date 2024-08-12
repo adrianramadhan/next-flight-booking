@@ -13,14 +13,35 @@ import {
 import { Input } from "@/components/ui/input";
 import SubmitButtonForm from "../../component/submit-form-button";
 import type { Airplane } from "@prisma/client";
+import type { ActionResult } from "@/app/dashboard/(auth)/signin/form/actions";
+import { useFormState } from "react-dom";
+import { saveFlight } from "../lib/actions";
 
 interface FormFlightProps {
   airplanes: Airplane[];
 }
 
+const initialFormState: ActionResult = {
+  errorTitle: null,
+  errorDesc: [],
+};
+
 export default function FormFlight({ airplanes }: FormFlightProps) {
+  const [state, formAction] = useFormState(saveFlight, initialFormState);
+
   return (
-    <form className="ml-2 space-y-6">
+    <form action={formAction} className="ml-2 space-y-6">
+      {state?.errorTitle !== null && (
+        <div className=" my-7 bg-red-500 w-full p-4 rounded-lg text-white">
+          <div className="font-bold mb-4">Error</div>
+          <ul className="list-disc list-inside">
+            {state.errorDesc?.map((value, index) => (
+              <li key={index + value}>{value}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="planeId">Pilih Pesawat</Label>

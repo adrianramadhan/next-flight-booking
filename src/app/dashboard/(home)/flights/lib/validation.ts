@@ -12,9 +12,9 @@ export const formFlightSchema = z.object({
     .min(3, "City code must be 3 characters long")
     .max(3, "City code must be 3 characters long"),
 
-  destination: z.string({ required_error: "Please enter a destination" }),
+  destinationCity: z.string({ required_error: "Please enter a destination" }),
   arrivalDate: z.date({ required_error: "Please enter a departure date" }),
-  destinationCode: z
+  destinationCityCode: z
     .string({
       required_error: "Please enter a destination code",
     })

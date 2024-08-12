@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 
 const CreateFlightPage: FC = async () => {
   const airplanes = await getAirplanes();
-
   return (
     <div>
       <div className="flex flex-row items-center justify-between">
