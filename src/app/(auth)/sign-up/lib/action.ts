@@ -3,7 +3,7 @@
 import { ActionResult } from "@/app/dashboard/(auth)/signin/form/actions";
 import { userSchema } from "./validation";
 import bcrypt from "bcrypt";
-import prisma from "../../../../../../lib/prisma";
+import prisma from "../../../../../lib/prisma";
 import { redirect } from "next/navigation";
 
 export async function signUpUser(
