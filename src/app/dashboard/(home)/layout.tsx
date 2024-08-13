@@ -26,58 +26,82 @@ export default async function DashboardLayout({
   }
 
   return (
-    <section>
-      <nav className="border-b border-muted p-5">
-        <div className="flex flex-row items-center justify-between">
-          <span className="font-bold text-primary">Flight Dashboard</span>
-        </div>
-      </nav>
+    <html lang="en">
+      <body>
+        <section>
+          <nav className="border-b border-muted p-5">
+            <div className="flex flex-row items-center justify-between">
+              <span className="font-bold text-primary">Flight Dashboard</span>
+            </div>
+          </nav>
 
-      {/* START Sidebar */}
-      <section className="flex flex-row gap-5 items-start flex-nowrap">
-        <section className="grow-0 w-[20%] h-screen p-5 space-y-5">
-          <div className="space-y-2">
-            <Button variant={"ghost"} asChild className="w-full justify-start">
-              <Link href={"/dashboard"}>Dashboard</Link>
-            </Button>
-          </div>
+          {/* START Sidebar */}
+          <section className="flex flex-row gap-5 items-start flex-nowrap">
+            <section className="grow-0 w-[20%] h-screen p-5 space-y-5">
+              <div className="space-y-2">
+                <Button
+                  variant={"ghost"}
+                  asChild
+                  className="w-full justify-start"
+                >
+                  <Link href={"/dashboard"}>Dashboard</Link>
+                </Button>
+              </div>
 
-          <div className="space-y-2">
-            <div className="uppercase text-xs font-bold">Master Data</div>
-            <Button variant={"ghost"} asChild className="w-full justify-start">
-              <Link href={"/dashboard/airplanes"}>
-                <Plane className="mr-2 w-4 h-4" />
-                Airplane
-              </Link>
-            </Button>
-            <Button variant={"ghost"} asChild className="w-full justify-start">
-              <Link href={"/dashboard/flights"}>
-                <BookOpenText className="mr-2 w-4 h-4" />
-                Flights
-              </Link>
-            </Button>
-            <Button variant={"ghost"} asChild className="w-full justify-start">
-              <Link href={"/dashboard/tickets"}>
-                <Ticket className="mr-2 w-4 h-4" />
-                Tickets
-              </Link>
-            </Button>
-            <Button variant={"ghost"} asChild className="w-full justify-start">
-              <Link href={"/dashboard/users"}>
-                <User className="mr-2 w-4 h-4" />
-                Users
-              </Link>
-            </Button>
-          </div>
+              <div className="space-y-2">
+                <div className="uppercase text-xs font-bold">Master Data</div>
+                <Button
+                  variant={"ghost"}
+                  asChild
+                  className="w-full justify-start"
+                >
+                  <Link href={"/dashboard/airplanes"}>
+                    <Plane className="mr-2 w-4 h-4" />
+                    Airplane
+                  </Link>
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  asChild
+                  className="w-full justify-start"
+                >
+                  <Link href={"/dashboard/flights"}>
+                    <BookOpenText className="mr-2 w-4 h-4" />
+                    Flights
+                  </Link>
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  asChild
+                  className="w-full justify-start"
+                >
+                  <Link href={"/dashboard/tickets"}>
+                    <Ticket className="mr-2 w-4 h-4" />
+                    Tickets
+                  </Link>
+                </Button>
+                <Button
+                  variant={"ghost"}
+                  asChild
+                  className="w-full justify-start"
+                >
+                  <Link href={"/dashboard/users"}>
+                    <User className="mr-2 w-4 h-4" />
+                    Users
+                  </Link>
+                </Button>
+              </div>
 
-          <ButtonLogout />
+              <ButtonLogout />
+            </section>
+            {/* END Sidebar */}
+
+            <section className="grow mr-5 mt-5 h-[87vh] overflow-y-auto">
+              {children}
+            </section>
+          </section>
         </section>
-        {/* END Sidebar */}
-
-        <section className="grow mr-5 mt-5 h-[87vh] overflow-y-auto">
-          {children}
-        </section>
-      </section>
-    </section>
+      </body>
+    </html>
   );
 }
