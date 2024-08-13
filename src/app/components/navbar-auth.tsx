@@ -3,6 +3,7 @@ import { getUser } from "@/lib/auth";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { logout } from "../(home)/lib/actions";
 
 export default async function NavbarAuth() {
   const { session, user } = await getUser();
@@ -26,7 +27,7 @@ export default async function NavbarAuth() {
       )}
 
       {session && user.role === "CUSTOMER" && (
-        <form action="">
+        <form action={logout}>
           <Button variant={"destructive"} className="rounded-full">
             <LogOut className="w-4 h-4" />
           </Button>
