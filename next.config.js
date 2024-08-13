@@ -7,6 +7,8 @@ const nextConfig = {
         hostname: "lekvyfigudvhxcpxuaex.supabase.co",
       },
     ],
+
+    unoptimized: true,
   },
 };
 

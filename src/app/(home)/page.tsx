@@ -11,7 +11,7 @@ export default async function Home() {
   [];
 
   return (
-    <>
+    <div className="text-white font-poppins bg-flysha-black">
       <section
         id="Header"
         className="bg-[url('/assets/images/background/airplane.png')] bg-no-repeat bg-cover bg-left-top -z-10"
@@ -1237,6 +1237,6 @@ export default async function Home() {
           All Rights Reserved. Copyright BuildWithAngga 2024.
         </p>
       </footer>
-    </>
+    </div>
   );
 }
