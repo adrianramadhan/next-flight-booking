@@ -1,4 +1,7 @@
 # Flight Booking App
+![image](https://github.com/user-attachments/assets/57c276b3-7a08-4f41-9a9a-e4cae1b0f39c)
+
+![image](https://github.com/user-attachments/assets/3b8fe6fe-af44-47de-9202-3266d72d4f42)
 
 ## Overview
 
