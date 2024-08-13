@@ -27,7 +27,7 @@ export default async function DashboardLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="bg-white">
         <section>
           <nav className="border-b border-muted p-5">
             <div className="flex flex-row items-center justify-between">
@@ -36,7 +36,7 @@ export default async function DashboardLayout({
           </nav>
 
           {/* START Sidebar */}
-          <section className="flex flex-row gap-5 items-start flex-nowrap">
+          <section className="flex flex-row gap-5 items-start flex-nowrap ">
             <section className="grow-0 w-[20%] h-screen p-5 space-y-5">
               <div className="space-y-2">
                 <Button
