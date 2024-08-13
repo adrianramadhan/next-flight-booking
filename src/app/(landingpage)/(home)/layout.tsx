@@ -94,7 +94,7 @@ export default function RootLayout({
                         name="name"
                         id="name"
                         placeholder="Write your name"
-                        className="rounded-full h-6 w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold focus:ring-2 focus:ring-flysha-light-purple"
+                        className="rounded-full  w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold focus:ring-2 focus:ring-flysha-light-purple"
                       />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -106,7 +106,7 @@ export default function RootLayout({
                         name="passport"
                         id="passport"
                         placeholder="Write passport number"
-                        className="rounded-full h-6 w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold ring-2 ring-flysha-light-purple"
+                        className="rounded-full  w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold ring-2 ring-flysha-light-purple"
                       />
                     </div>
                   </div>
@@ -119,7 +119,7 @@ export default function RootLayout({
                       name="email"
                       id="email"
                       placeholder="Write your email"
-                      className="rounded-full h-6 w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold ring-2 ring-flysha-red"
+                      className="rounded-full  w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold ring-2 ring-flysha-red"
                     />
                     <span className="error-messages font-medium text-xs text-flysha-red font-inter">
                       Wrong format email address
@@ -134,7 +134,7 @@ export default function RootLayout({
                       name="password"
                       id="password"
                       placeholder="Type your password"
-                      className="rounded-full h-6 w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold focus:ring-2 focus:ring-flysha-light-purple"
+                      className="rounded-full  w-full p-[12px_20px] h-[48px] bg-[#EDE8F5] appearance-none outline-none font-semibold focus:ring-2 focus:ring-flysha-light-purple"
                     />
                     <span className="error-messages font-medium text-xs text-flysha-red font-inter">
                       Wrong format email address
