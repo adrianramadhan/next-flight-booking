@@ -1,11 +1,12 @@
 import Navbar from "@/app/components/navbar";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import FilterClass from "./components/filter-class";
 import FilterFlight from "./components/filter-flight";
 import FilterAirplane from "./components/fliter-airplane";
 import ListFlights from "./components/list-flights";
+import LoadingFilterAirlane from "./components/loading-filter-airlane";
 
 export default function AvailableFlightsPage() {
   return (
@@ -36,7 +37,9 @@ export default function AvailableFlightsPage() {
           <form className="ticket-filter flex flex-col shrink-0 w-[230px] gap-[30px] text-flysha-off-purple">
             <FilterClass />
             <FilterFlight />
+            <Suspense fallback={<LoadingFilterAirlane />} />
             <FilterAirplane />
+            <Suspense />
           </form>
           <ListFlights />
         </div>

@@ -22,3 +22,22 @@ export const getCityFilter = async () => {
     console.log(error);
   }
 };
+
+export const getAirplanes = async () => {
+  try {
+    const data = await prisma.airplane.findMany({
+      where: {
+        flights: {
+          every: {
+            id: undefined,
+          },
+        },
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
