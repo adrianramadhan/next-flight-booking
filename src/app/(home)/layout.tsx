@@ -127,6 +127,8 @@ export default function RootLayout({
             <CompanyLogos />
           </div>
         </section>
+
+        {children}
       </body>
     </html>
   );
