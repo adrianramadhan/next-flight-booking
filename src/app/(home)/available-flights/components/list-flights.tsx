@@ -1,6 +1,4 @@
 "use client";
-
-import Image from "next/image";
 import React, { useContext } from "react";
 import FlightItem from "./flight-item";
 import { type FContext, FlightContext } from "../providers/flight-provider";
@@ -16,7 +14,7 @@ export default function ListFlights() {
   return (
     <div className="ticket-container flex flex-col w-full gap-6">
       {flights?.map((val) => (
-        <FlightItem key={val.id} />
+        <FlightItem data={val} key={val.id} />
       ))}
       <p className="text-center text-sm text-[#A0A0AC] h-fit">
         You’ve reached the end of results.
