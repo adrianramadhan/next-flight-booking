@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { Suspense } from "react";
 import FilterClass from "./components/filter-class";
 import FilterFlight from "./components/filter-flight";
-import FilterAirplane from "./components/fliter-airplane";
+import FilterAirplane from "./components/filter-airplane";
 import ListFlights from "./components/list-flights";
 import LoadingFilterAirlane from "./components/loading-filter-airlane";
 
