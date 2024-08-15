@@ -10,6 +10,7 @@ import React, {
   type ReactNode,
 } from "react";
 import axios from "axios";
+import { useSearchParams } from "next/navigation";
 
 interface FlightProviderProps {
   children: ReactNode;
@@ -67,10 +68,19 @@ export type FContext = {
 export const FlightContext = createContext<FContext | null>(null);
 
 const FlightProvider: FC<FlightProviderProps> = ({ children }) => {
+  const search = useSearchParams();
+
+  const params = {
+    arrival: search.get("arrival"),
+    date: search.get("date"),
+    departure: search.get("departure"),
+  };
+  
+  
   const [state, dispatch] = useReducer(filterReducer, {
-    arrival: null,
-    date: null,
-    departure: null,
+    arrival: params.arrival,
+    date: params.date,
+    departure: params.departure,
     planeId: null,
     planeIds: [],
     seat: null,

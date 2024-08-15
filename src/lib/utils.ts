@@ -48,6 +48,21 @@ export const rupiahFormat = (value: number) => {
   }).format(value);
 };
 
+export const objectToParams = (obj: { [key: string]: unknown }) => {
+  const queryParams = Object.keys(obj)
+    .map((key) => {
+      if (obj[key] !== null) {
+        return `${key}=${obj[key]}`;
+      }
+
+      return "";
+    })
+    .filter((item) => item !== "")
+    .join("&");
+
+  return queryParams;
+};
+
 export const mappingSeats = (seats: FlightSeat[]) => {
   const totalSeatEconomy = seats.filter(
     (seat) => seat.type === "ECONOMY"

@@ -23,7 +23,7 @@ export const columns: ColumnDef<Airplane>[] = [
           width={120}
           height={120}
           className="rounded-lg object-cover"
-          style={{ width: "auto", height: "auto" }}
+          // style={{ width: "auto", height: "auto" }}
           priority
         />
       );
