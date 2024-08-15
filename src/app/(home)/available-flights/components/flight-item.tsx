@@ -1,14 +1,29 @@
 import Image from "next/image";
-import React from "react";
-import type { FlightWithPlane } from "../providers/flight-provider";
+import React, { useContext, useMemo } from "react";
+import {
+  FlightContext,
+  type FContext,
+  type FlightWithPlane,
+} from "../providers/flight-provider";
 import { getUrlFile } from "@/lib/supabase";
-import { dateFormat, rupiahFormat } from "@/lib/utils";
+import {
+  dateFormat,
+  rupiahFormat,
+  SEAT_VALUES,
+  type SeatValuesType,
+} from "@/lib/utils";
 
 interface FlightItemProps {
   data: FlightWithPlane;
 }
 
 export default function FlightItem({ data }: FlightItemProps) {
+  const { state } = useContext(FlightContext) as FContext;
+
+  const selectedSeat = useMemo(() => {
+    return SEAT_VALUES[state.seat as SeatValuesType ?? "ECONOMY"];
+  }, [state.seat]);
+
   return (
     <div className="ticket-card flex justify-between items-center rounded-[20px] p-5 bg-flysha-bg-purple">
       <div className="flex gap-[16px] items-center">
@@ -23,7 +38,10 @@ export default function FlightItem({ data }: FlightItemProps) {
         </div>
         <div className="flex flex-col justify-center-center gap-[2px]">
           <p className="font-bold text-lg">{data.plane.name}</p>
-          <p className="text-sm text-flysha-off-purple">Businnes Class</p>
+          <p className="text-sm text-flysha-off-purple">
+            {selectedSeat.label}
+            Class
+          </p>
         </div>
       </div>
       <div className="flex items-center gap-[30px]">
@@ -51,7 +69,7 @@ export default function FlightItem({ data }: FlightItemProps) {
         </div>
       </div>
       <p className="w-fit h-fit font-bold text-lg">
-        {rupiahFormat(data.price)}
+        {rupiahFormat(data.price + selectedSeat.additionalPrice)}
       </p>
       <a
         href="choose-seat.html"

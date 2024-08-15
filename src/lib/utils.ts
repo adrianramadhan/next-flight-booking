@@ -3,6 +3,23 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import dayjs from "dayjs";
 
+export const SEAT_VALUES = {
+  ECONOMY: {
+    label: "Economy",
+    additionalPrice: 0,
+  },
+  BUSINESS: {
+    label: "Business",
+    additionalPrice: 500000,
+  },
+  FIRST: {
+    label: "First",
+    additionalPrice: 750000,
+  },
+};
+
+export type SeatValuesType = keyof typeof SEAT_VALUES;
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
