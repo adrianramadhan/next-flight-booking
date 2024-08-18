@@ -3,64 +3,22 @@ import SeatItem from "./seat-item";
 
 export default function SeatList() {
   return (
-    <form className="flex flex-col gap-5">
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
+    <form className="flex flex-row justify-between gap-5">
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-[19px]">
           <SeatItem />
           <SeatItem />
         </div>
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-      </div>
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-        <div className="seat-col flex gap-[19px]">
+        <div className="flex flex-col gap-[19px]">
           <SeatItem />
           <SeatItem />
         </div>
       </div>
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
+      <div className="flex gap-5">
+        <div className="flex flex-col gap-[19px]">
           <SeatItem />
         </div>
-      </div>
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-      </div>
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-      </div>
-      <div className="seat-row flex justify-between">
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
-          <SeatItem />
-        </div>
-        <div className="seat-col flex gap-[19px]">
-          <SeatItem />
+        <div className="flex flex-col gap-[19px]">
           <SeatItem />
         </div>
       </div>

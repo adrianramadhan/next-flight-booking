@@ -2,8 +2,21 @@ import Image from "next/image";
 import React from "react";
 import SeatList from "./components/seat-list";
 import FlightDetail from "./components/flight-detail";
+import { getFlightById } from "../../lib/data";
 
-export default function ChooseSeatPage() {
+type Params = {
+  id: string;
+};
+
+interface ChooseSeatProps {
+  params: Params;
+}
+
+export default async function ChooseSeatPage({ params }: ChooseSeatProps) {
+  const flight = await getFlightById(params.id);
+
+  console.log(flight);
+
   return (
     <section
       id="Chosse-Seat"
