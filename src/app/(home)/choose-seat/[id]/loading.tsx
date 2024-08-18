@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import LoadingSeatList from "./components/loading-seat-list";
+import LoadingFlightDetail from "./components/loading-flight-detail";
 
 export default function Loading() {
   return (
@@ -50,12 +51,11 @@ export default function Loading() {
                 <span className="font-semibold">Available</span>
               </div>
             </div>
-            {/* <SeatList /> */}
             <LoadingSeatList />
           </div>
         </div>
       </div>
-      {/* <FlightDetail /> */}
+      <LoadingFlightDetail />
     </section>
   );
 }
