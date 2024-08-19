@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import Image from "next/image";
 import { Airplane, Flight, FlightSeat } from "@prisma/client";
 import {
@@ -11,6 +11,7 @@ import {
 } from "@/lib/utils";
 import { getUrlFile } from "@/lib/supabase";
 import useCheckoutData from "@/hooks/useCheckoutData";
+import { SeatContext, type SeatContextType } from "../providers/seat-provider";
 
 type FlightProps = Flight & { seats: FlightSeat[]; plane: Airplane };
 
@@ -20,6 +21,8 @@ interface FlightDetailProps {
 
 export default function FlightDetail({ flight }: FlightDetailProps) {
   const data = useCheckoutData();
+
+  const { seat } = useContext(SeatContext) as SeatContextType;
 
   const selectedSeat = useMemo(() => {
     return SEAT_VALUES[(data.data?.seat as SeatValuesType) ?? "ECONOMY"];
@@ -124,7 +127,7 @@ export default function FlightDetail({ flight }: FlightDetailProps) {
           </div>
           <div className="flex justify-between">
             <span>Seat Choosen</span>
-            <span className="font-semibold">3C</span>
+            <span className="font-semibold">{seat?.seatNumber}</span>
           </div>
           <div className="flex justify-between">
             <span>Passenger</span>
