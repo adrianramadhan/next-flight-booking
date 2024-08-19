@@ -62,7 +62,7 @@ export default async function ChooseSeatPage({ params }: ChooseSeatProps) {
                 <span className="font-semibold">Available</span>
               </div>
             </div>
-            <SeatList />
+            {flight?.seats && <SeatList seats={flight.seats} />}
           </div>
         </div>
       </div>
