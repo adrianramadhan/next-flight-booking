@@ -15,8 +15,6 @@ interface ChooseSeatProps {
 export default async function ChooseSeatPage({ params }: ChooseSeatProps) {
   const flight = await getFlightById(params.id);
 
-  console.log(flight);
-
   return (
     <section
       id="Chosse-Seat"

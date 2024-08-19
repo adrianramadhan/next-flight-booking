@@ -27,8 +27,8 @@ export default async function DashboardLayout({
 
   return (
     <html lang="en">
-      <body className="bg-white">
-        <section>
+      <body>
+        <section className="bg-white text-black">
           <nav className="border-b border-muted p-5">
             <div className="flex flex-row items-center justify-between">
               <span className="font-bold text-primary">Flight Dashboard</span>
