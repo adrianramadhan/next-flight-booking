@@ -15,11 +15,7 @@ export default function HomeLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`text-white bg-flysha-black font-poppins ${inter.className}`}
-      >
-        {children}
-      </body>
+      <body className={` ${inter.className}`}>{children}</body>
     </html>
   );
 }
