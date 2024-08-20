@@ -4,6 +4,8 @@ import React, { useContext, useMemo } from "react";
 import Image from "next/image";
 import { Airplane, Flight, FlightSeat } from "@prisma/client";
 import {
+  type Checkout,
+  CHECKOUT_KEY,
   dateFormat,
   rupiahFormat,
   SEAT_VALUES,
@@ -12,21 +14,53 @@ import {
 import { getUrlFile } from "@/lib/supabase";
 import useCheckoutData from "@/hooks/useCheckoutData";
 import { SeatContext, type SeatContextType } from "../providers/seat-provider";
+import { useToast } from "@/components/ui/use-toast";
+import { Session } from "lucia";
+import { useRouter } from "next/navigation";
 
 type FlightProps = Flight & { seats: FlightSeat[]; plane: Airplane };
 
 interface FlightDetailProps {
   flight: FlightProps;
+  session: Session | null;
 }
 
-export default function FlightDetail({ flight }: FlightDetailProps) {
+export default function FlightDetail({ flight, session }: FlightDetailProps) {
   const data = useCheckoutData();
+  const { toast } = useToast();
 
   const { seat } = useContext(SeatContext) as SeatContextType;
+
+  const router = useRouter();
 
   const selectedSeat = useMemo(() => {
     return SEAT_VALUES[(data.data?.seat as SeatValuesType) ?? "ECONOMY"];
   }, [data.data?.seat]);
+
+  const continueBook = () => {
+    if (seat === null) {
+      toast({
+        title: "Failed to checkout",
+        description: "Please select a seat first",
+      });
+      return;
+    }
+
+    if (session === null) {
+      router.replace("/sign-in");
+      return;
+    }
+
+    const checkoutData: Checkout = {
+      id: data.data?.id,
+      seat: data.data?.seat,
+      flightDetail: flight,
+      seatDetail: seat,
+    };
+
+    sessionStorage.setItem(CHECKOUT_KEY, JSON.stringify(checkoutData));
+    router.push("/checkout");
+  };
 
   return (
     <div className="flex flex-col items-center gap-[30px] mt-[61px] pb-[30px]">
@@ -140,12 +174,13 @@ export default function FlightDetail({ flight }: FlightDetailProps) {
             </span>
           </div>
         </div>
-        <a
-          href="checkout.html"
+        <button
+          type="button"
+          onClick={continueBook}
           className="font-bold text-flysha-black bg-flysha-light-purple rounded-full h-12 w-full transition-all duration-300 hover:shadow-[0_10px_20px_0_#B88DFF] flex justify-center items-center"
         >
           Continue to Book
-        </a>
+        </button>
       </div>
     </div>
   );
