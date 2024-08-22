@@ -4,8 +4,11 @@ import React from "react";
 import FlightCard from "./components/flight-card";
 import Benefits from "./components/benefits";
 import PaymentDetail from "./components/payment-detail";
+import { getUser } from "@/lib/auth";
 
-export default function page() {
+export default async function page() {
+  const { user } = await getUser();
+
   return (
     <>
       <section
@@ -29,7 +32,7 @@ export default function page() {
         className="container max-w-[1130px] mx-auto -mt-[33px] z-10 relative"
       >
         <div className="checkout-container flex flex-col lg:flex-row gap-[70px]">
-          <FlightCard />
+          <FlightCard user={user} />
           <div className="flex flex-col mt-[63px] gap-[30px]">
             <Benefits />
             <PaymentDetail />
