@@ -1,5 +1,4 @@
 import Navbar from "@/app/components/navbar";
-import Image from "next/image";
 import React from "react";
 import FlightCard from "./components/flight-card";
 import Benefits from "./components/benefits";
