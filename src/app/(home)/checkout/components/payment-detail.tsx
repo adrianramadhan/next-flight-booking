@@ -1,15 +1,23 @@
 "use client";
 
 import useCheckoutData from "@/hooks/useCheckoutData";
+import useTransaction from "@/hooks/useTransaction";
 import { rupiahFormat, SEAT_VALUES, type SeatValuesType } from "@/lib/utils";
+import type { User } from "lucia";
 import React, { useMemo } from "react";
 
-export default function PaymentDetail() {
+interface PaymentDetailProps {
+  user: User | null;
+}
+
+export default function PaymentDetail({ user }: PaymentDetailProps) {
   const { data } = useCheckoutData();
 
   const selectedSeat = useMemo(() => {
     return SEAT_VALUES[(data?.seat as SeatValuesType) ?? "ECONOMY"];
   }, [data?.seat]);
+
+  const { isLoading, payTransaction } = useTransaction({ user });
 
   return (
     <div className="flex flex-col gap-[30px] w-[400px]">
@@ -46,6 +54,8 @@ export default function PaymentDetail() {
       </div>
       <button
         type="button"
+        onClick={payTransaction}
+        disabled={isLoading}
         className="font-bold text-flysha-black bg-flysha-light-purple rounded-full h-12 w-full transition-all duration-300 hover:shadow-[0_10px_20px_0_#B88DFF] flex justify-center items-center"
       >
         Checkout with Midtrans
