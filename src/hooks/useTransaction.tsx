@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { SEAT_VALUES, type SeatValuesType } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type Props = {
   user: User | null;
@@ -13,6 +14,8 @@ const useTransaction = ({ user }: Props) => {
   const { data } = useCheckoutData();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const selectedSeat = useMemo(() => {
     return SEAT_VALUES[(data?.seat as SeatValuesType) ?? "ECONOMY"];
@@ -47,6 +50,31 @@ const useTransaction = ({ user }: Props) => {
       const transaction = await transactionMutate.mutateAsync(bodyData);
 
       // handle midtrans
+      window.snap.pay(transaction.midtrans.token, {
+        onSuccess: (result: any) => {
+          /* You may add your own implementation here */
+          alert("payment success!");
+          console.log(result);
+          router.push("/success-checkout");
+        },
+        onPending: (result: any) => {
+          /* You may add your own implementation here */
+          alert("waiting for your payment!");
+          console.log(result);
+          router.push("/success-checkout");
+        },
+        onError: (result: any) => {
+          /* You may add your own implementation here */
+          alert("payment failed!");
+          console.log(result);
+          alert("payment failed!");
+        },
+        onClose: () => {
+          /* You may add your own implementation here */
+          alert("you closed the popup without finishing the payment");
+        },
+      });
+
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);

@@ -2,8 +2,8 @@ import type { NextRequest } from "next/server";
 import prisma from "../../../../../lib/prisma";
 import { makeid } from "@/lib/utils";
 
-const MIDTRANS_URL = process.env.NEXT_PUBLIC_TRANSACTION_URL ?? "";
-const MIDTRANS_AUTH_KEY = process.env.NEXT_PUBLIC_AUTH_KEY ?? "";
+const MIDTRANS_URL = process.env.NEXT_PUBLIC_MIDTRANS_TRANSACTION_URL ?? "";
+const MIDTRANS_AUTH_KEY = process.env.NEXT_PUBLIC_MIDTRANS_AUTH_KEY ?? "";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
