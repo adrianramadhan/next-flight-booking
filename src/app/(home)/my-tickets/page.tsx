@@ -1,6 +1,7 @@
 import Navbar from "@/app/components/navbar";
 import React from "react";
 import TicketCard from "./components/ticket-card";
+import LoadingTicketCard from "./components/loading-ticket-card";
 
 export default function MyTicketsPage() {
   return (
