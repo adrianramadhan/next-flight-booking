@@ -8,7 +8,6 @@ import type {
   User,
 } from "@prisma/client";
 import Image from "next/image";
-import { get } from "node:http";
 import React from "react";
 
 type Data = Ticket & {

@@ -54,7 +54,7 @@ export default async function DetailTicketPage({
           {data && <FlightDetail data={data} />}
           <div className="flex flex-col mt-[63px] gap-[30px]">
             <Benefits />
-            <TransactionDetail />
+            {data && <TransactionDetail data={data} />}
           </div>
         </div>
       </section>
