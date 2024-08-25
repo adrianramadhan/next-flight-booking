@@ -1,9 +1,21 @@
 import Navbar from "@/app/components/navbar";
 import React from "react";
 import TicketCard from "./components/ticket-card";
-import LoadingTicketCard from "./components/loading-ticket-card";
+import { getUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { getMyTickets } from "./lib/data";
 
-export default function MyTicketsPage() {
+export default async function MyTicketsPage() {
+  const { session, user } = await getUser();
+
+  if (!session) {
+    return redirect("/sign-in");
+  }
+
+  const data = await getMyTickets(user.id);
+
+  console.log(data);
+
   return (
     <>
       <section
@@ -26,9 +38,9 @@ export default function MyTicketsPage() {
         className="container max-w-[1130px] mx-auto flex justify-end -mt-[60px] pb-[100px] z-10 relative"
       >
         <div className="ticket-container flex flex-col w-[900px] gap-6">
-          <TicketCard />
-          <TicketCard />
-          <TicketCard />
+          {data?.map((val) => (
+            <TicketCard key={val.id} data={val} />
+          ))}
           <p className="text-center text-sm text-[#A0A0AC] h-fit">
             You’ve reached the end of results.
           </p>
