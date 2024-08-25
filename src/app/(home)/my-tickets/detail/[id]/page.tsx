@@ -4,8 +4,24 @@ import Image from "next/image";
 import React from "react";
 import TransactionDetail from "./components/transaction-detail";
 import FlightDetail from "./components/flight-detail";
+import { getDetailTicket } from "../../lib/data";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-export default function DetailTicketPage() {
+type params = {
+  id: string;
+};
+
+interface DetailTicketPageProps {
+  params: Params;
+}
+
+export default async function DetailTicketPage({
+  params,
+}: DetailTicketPageProps) {
+  const data = await getDetailTicket(params.id);
+
+  console.log(data);
+
   return (
     <>
       <section
@@ -35,7 +51,7 @@ export default function DetailTicketPage() {
         className="container max-w-[1130px] mx-auto -mt-[33px] z-10 relative"
       >
         <div className="checkout-container flex-col lg:flex-row flex gap-[70px]">
-          <FlightDetail />
+          {data && <FlightDetail data={data} />}
           <div className="flex flex-col mt-[63px] gap-[30px]">
             <Benefits />
             <TransactionDetail />
