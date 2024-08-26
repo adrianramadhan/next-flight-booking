@@ -1219,7 +1219,7 @@ export default async function Home() {
                   height={40}
                   width={40}
                 />
-                buildwithangga
+                Adrian Ramadhan
               </Link>
               <Link
                 href=""
@@ -1231,13 +1231,13 @@ export default async function Home() {
                   width={40}
                   height={40}
                 />
-                team@bwa.com
+                adrian@gmail.com
               </Link>
             </div>
           </div>
         </div>
         <p className="mx-auto mt-[60px] text-[#A0A0AC] text-sm z-10">
-          All Rights Reserved. Copyright BuildWithAngga 2024.
+          All Rights Reserved. Copyright Adrian Ramadhan 2024.
         </p>
       </footer>
     </div>
