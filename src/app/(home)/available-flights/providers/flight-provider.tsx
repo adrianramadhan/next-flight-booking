@@ -26,7 +26,7 @@ type FilterState = {
   departure?: string | null;
   arrival?: string | null;
   date?: string | null;
-  planeId?: string;
+  planeId?: string | null;
   planeIds: string[];
   seat?: string | null;
 };
