@@ -8,7 +8,7 @@ import Image from "next/image";
 import React, { useMemo } from "react";
 
 interface FlightCardProps {
-  user: User | null;
+  user: Omit<User, "password"> | null;
 }
 
 export default function FlightCard({ user }: FlightCardProps) {
