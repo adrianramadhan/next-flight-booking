@@ -8,7 +8,6 @@ import { searchFlight } from "./lib/actions";
 export default async function Home() {
   const filter = await getCityFilter();
 
-  console.log(filter);
   [];
 
   return (

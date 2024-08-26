@@ -14,8 +14,6 @@ export default async function MyTicketsPage() {
 
   const data = await getMyTickets(user.id);
 
-  console.log(data);
-
   return (
     <>
       <section

@@ -14,7 +14,6 @@ export default function FilterClass() {
   const { dispatch } = useContext(FlightContext) as FContext;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
 
     dispatch({
       type: FilterActionKind.SET_SEAT,

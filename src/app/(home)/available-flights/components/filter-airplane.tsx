@@ -5,7 +5,6 @@ import CheckboxAirline from "./checkbox-airline";
 export default async function FilterAirplane() {
   const airplanes = await getAirplanes();
 
-  console.log(airplanes);
 
   return (
     <div className="flex flex-col gap-4">

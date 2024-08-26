@@ -6,6 +6,7 @@ import TransactionDetail from "./components/transaction-detail";
 import FlightDetail from "./components/flight-detail";
 import { getDetailTicket } from "../../lib/data";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { dateFormat } from "@/lib/utils";
 
 type params = {
   id: string;
@@ -36,10 +37,10 @@ export default async function DetailTicketPage({
             </p>
             <div className="flex flex-col gap-1">
               <h1 className="font-bold text-[32px] leading-[48px]">
-                Jakarta to Shanghai
+                {data?.flight.departureCity} to {data?.flight.destinationCity}
               </h1>
               <p className="font-medium text-lg leading-[27px]">
-                10 March 2024
+                {data?.bookingDate ? dateFormat(data?.bookingDate) : ""}
               </p>
             </div>
           </div>
